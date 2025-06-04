@@ -19,13 +19,13 @@ spec:
             - containerPort: 8080
           env:
             - name: SPRING_DATASOURCE_URL
-              value: "jdbc:postgresql://ep-soft-darkness-a4q2zq2r-pooler.us-east-1.aws.neon.tech:5432/CAMPUSCLOUD?sslmode=require"
+              value: ""
             - name: SPRING_DATASOURCE_USERNAME
-              value: "CAMPUSCLOUD_owner"
+              value: ""
             - name: SPRING_DATASOURCE_PASSWORD
-              value: "npg_Xa4r0iETympv"
+              value: ""
             - name: RECAPTCHA_SECRET
-              value: "6LeJ3FMrAAAAABjvNK_Jce8TCc-zACuC6_AlCsZs"
+              value: ""
           resources:
             requests:
               memory: "512Mi"
