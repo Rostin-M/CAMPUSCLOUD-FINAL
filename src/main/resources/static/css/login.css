@@ -1,0 +1,172 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.recaptcha-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-image: url("/images/fondo_login.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+section {
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 20px;
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.inputbox {
+  position: relative;
+  margin-bottom: 1.5rem;
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.inputbox ion-icon {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #fff;
+  font-size: 1.2rem;
+}
+
+.inputbox input {
+  width: 100%;
+  padding: 0.8rem 2.5rem;
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 5px;
+  color: #000000;
+  font-size: 1rem;
+  outline: none;
+}
+
+.inputbox-correo {
+  color: #000000;
+}
+
+button {
+  width: 100%;
+  padding: 0.8rem;
+  background: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+button:disabled {
+  background: #888;
+  cursor: not-allowed;
+}
+
+/* Logo */
+.logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.udem_logo {
+  max-width: 150px;
+  height: auto;
+}
+
+/* Mensajes de error */
+.error {
+  display: none;
+  background-color: rgba(255, 107, 107, 0.9);
+  color: #fff;
+  font-size: 0.85rem;
+  padding: 0.4rem;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 10;
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  top: 100%;
+  left: 0;
+  transform: translateY(5px);
+}
+
+.error-global {
+  color: #fff;
+  background-color: rgba(255, 50, 50, 0.9);
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.6rem;
+  border-radius: 5px;
+  text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Ajustes para el tooltip dinámico */
+.inputbox .error {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100%;
+  text-align: left;
+}
+
+.error-tooltip {
+  display: none;
+  background-color: rgba(255, 107, 107, 0.9);
+  color: #fff;
+  font-size: 0.85rem;
+  padding: 0.4rem;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 10;
+  white-space: nowrap;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  top: calc(100% + 5px);
+  left: 50%;
+  transform: translate(-50%, 5px);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 10px);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 5px);
+  }
+}

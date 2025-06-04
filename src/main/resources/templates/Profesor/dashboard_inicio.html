@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard del Profesor</title>
+    <link rel="stylesheet" href="/css/profesor/dashboard.css" />
+  </head>
+  <body th:data-username="${nombreUsuario}" th:data-userid="${userId}">
+    <div class="dashboard-container">
+      <!-- Header -->
+      <header class="dashboard-header">
+        <div>
+          <h1 class="header-title">Dashboard</h1>
+          <p class="header-subtitle">Bienvenido de nuevo, Juan</p>
+        </div>
+
+        <div class="header-actions">
+          <button class="btn-icon" aria-label="Notificaciones">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+              />
+            </svg>
+            <span class="notification-dot"></span>
+          </button>
+
+          <button class="btn-icon" aria-label="Mensajes">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              />
+            </svg>
+            <span class="notification-dot"></span>
+          </button>
+
+          <button class="btn-icon" aria-label="Buscar">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+          </button>
+
+          <div class="avatar" aria-label="Perfil de usuario">
+            <span>JP</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Content -->
+      <main class="dashboard-content">
+        <!-- Stats Cards -->
+        <div class="stats-grid">
+          <div class="card stat-card students card-padding">
+            <div class="stat-header">
+              <div>
+                <p class="stat-title">Estudiantes</p>
+                <h3 class="stat-value">124</h3>
+                <p class="stat-trend trend-up">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3 w-3 mr-1"
+                    width="12"
+                    height="12"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 10l7-7m0 0l7 7m-7-7v18"
+                    />
+                  </svg>
+                  4% desde el mes pasado
+                </p>
+              </div>
+              <div class="icon-container icon-blue">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="progress-container">
+              <div class="progress-header">
+                <span>Progreso</span>
+                <span>85%</span>
+              </div>
+              <div class="progress-bar">
+                <div
+                  class="progress-fill fill-primary"
+                  id="students-progress"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card stat-card assignments card-padding">
+            <div class="stat-header">
+              <div>
+                <p class="stat-title">Tareas</p>
+                <h3 class="stat-value">42</h3>
+                <p class="stat-trend trend-up">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3 w-3 mr-1"
+                    width="12"
+                    height="12"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 10l7-7m0 0l7 7m-7-7v18"
+                    />
+                  </svg>
+                  12% desde la semana pasada
+                </p>
+              </div>
+              <div class="icon-container icon-yellow">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="progress-container">
+              <div class="progress-header">
+                <span>Completadas</span>
+                <span>68%</span>
+              </div>
+              <div class="progress-bar">
+                <div
+                  class="progress-fill fill-warning"
+                  id="assignments-progress"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card stat-card events card-padding">
+            <div class="stat-header">
+              <div>
+                <p class="stat-title">Eventos</p>
+                <h3 class="stat-value">18</h3>
+                <p class="stat-trend trend-down">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3 w-3 mr-1"
+                    width="12"
+                    height="12"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                    />
+                  </svg>
+                  3% desde el mes pasado
+                </p>
+              </div>
+              <div class="icon-container icon-cyan">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="progress-container">
+              <div class="progress-header">
+                <span>Este mes</span>
+                <span>8 eventos</span>
+              </div>
+              <div class="progress-bar">
+                <div
+                  class="progress-fill fill-accent"
+                  id="events-progress"
+                ></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card stat-card messages card-padding">
+            <div class="stat-header">
+              <div>
+                <p class="stat-title">Mensajes</p>
+                <h3 class="stat-value">64</h3>
+                <p class="stat-trend trend-up">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3 w-3 mr-1"
+                    width="12"
+                    height="12"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 10l7-7m0 0l7 7m-7-7v18"
+                    />
+                  </svg>
+                  8% desde ayer
+                </p>
+              </div>
+              <div class="icon-container icon-green">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-6 w-6"
+                  width="24"
+                  height="24"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="progress-container">
+              <div class="progress-header">
+                <span>No leídos</span>
+                <span>12 mensajes</span>
+              </div>
+              <div class="progress-bar">
+                <div
+                  class="progress-fill fill-success"
+                  id="messages-progress"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Main Grid -->
+        <div class="main-grid">
+          <!-- Left Column -->
+          <div class="content-column">
+            <!-- Upcoming Classes -->
+            <div class="card card-padding">
+              <div class="card-header">
+                <h2 class="card-title">Próximas Clases</h2>
+                <a href="#" class="link-primary">Ver todas</a>
+              </div>
+
+              <div class="class-list" id="upcoming-classes">
+                <!-- Classes will be loaded by JavaScript -->
+              </div>
+            </div>
+
+            <!-- Student Performance -->
+            <div class="card card-padding">
+              <div class="card-header">
+                <h2 class="card-title">Rendimiento de Estudiantes</h2>
+                <div class="filter-buttons">
+                  <button class="btn-filter" id="filter-week">Semana</button>
+                  <button class="btn-filter active" id="filter-month">
+                    Mes
+                  </button>
+                  <button class="btn-filter" id="filter-year">Año</button>
+                </div>
+              </div>
+
+              <div class="chart-container" id="performance-chart">
+                <!-- Chart bars will be loaded by JavaScript -->
+              </div>
+
+              <div class="chart-labels">
+                <span>Semana 1</span>
+                <span>Semana 2</span>
+                <span>Semana 3</span>
+                <span>Semana 4</span>
+              </div>
+
+              <div class="stats-summary">
+                <div class="stat-summary-item">
+                  <p class="stat-summary-label">Promedio</p>
+                  <p class="stat-summary-value">7.8</p>
+                </div>
+                <div class="stat-summary-item">
+                  <p class="stat-summary-label">Asistencia</p>
+                  <p class="stat-summary-value">92%</p>
+                </div>
+                <div class="stat-summary-item">
+                  <p class="stat-summary-label">Participación</p>
+                  <p class="stat-summary-value">85%</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Recent Submissions -->
+            <div class="card card-padding">
+              <div class="card-header">
+                <h2 class="card-title">Entregas Recientes</h2>
+                <a href="#" class="link-primary">Ver todas</a>
+              </div>
+
+              <div class="table-container">
+                <table class="data-table">
+                  <thead>
+                    <tr>
+                      <th>Estudiante</th>
+                      <th>Tarea</th>
+                      <th>Fecha</th>
+                      <th>Estado</th>
+                      <th>Acción</th>
+                    </tr>
+                  </thead>
+                  <tbody id="submissions-table">
+                    <!-- Submissions will be loaded by JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column -->
+          <div class="content-column">
+            <!-- Calendar -->
+            <div class="card card-padding">
+              <div class="calendar-header">
+                <h2 class="card-title">Mayo 2023</h2>
+                <div class="calendar-nav">
+                  <button class="btn-icon" aria-label="Mes anterior">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5"
+                      width="20"
+                      height="20"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 19l-7-7 7-7"
+                      />
+                    </svg>
+                  </button>
+                  <button class="btn-icon" aria-label="Mes siguiente">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5"
+                      width="20"
+                      height="20"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+
+              <div class="calendar">
+                <div class="calendar-grid-days">
+                  <div class="calendar-weekday">L</div>
+                  <div class="calendar-weekday">M</div>
+                  <div class="calendar-weekday">X</div>
+                  <div class="calendar-weekday">J</div>
+                  <div class="calendar-weekday">V</div>
+                  <div class="calendar-weekday">S</div>
+                  <div class="calendar-weekday">D</div>
+                </div>
+
+                <div class="calendar-grid-dates" id="calendar-grid"></div>
+              </div>
+
+              <button class="btn-full btn-icon-text">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4"
+                  width="16"
+                  height="16"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+                Añadir evento
+              </button>
+            </div>
+
+            <!-- Tasks -->
+            <div class="card card-padding">
+              <div class="card-header">
+                <h2 class="card-title">Tareas Pendientes</h2>
+                <a href="#" class="link-primary">Ver todas</a>
+              </div>
+
+              <div class="task-list" id="task-list"></div>
+
+              <button class="btn-full btn-icon-text">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4"
+                  width="16"
+                  height="16"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 4v16m8-8H4"
+                  />
+                </svg>
+                Añadir tarea
+              </button>
+            </div>
+
+            <!-- Recent Messages -->
+            <div class="card card-padding">
+              <div class="card-header">
+                <h2 class="card-title">Mensajes Recientes</h2>
+                <a href="#" class="link-primary">Ver todos</a>
+              </div>
+
+              <div class="message-list" id="message-list"></div>
+
+              <button class="btn-full btn-icon-text">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4"
+                  width="16"
+                  height="16"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"
+                  />
+                </svg>
+                Enviar mensaje
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <script src="/js/profesor/dashboard.js"></script>
+  </body>
+</html>

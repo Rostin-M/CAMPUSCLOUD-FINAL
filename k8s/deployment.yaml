@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: campuscloud-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: campuscloud
+  template:
+    metadata:
+      labels:
+        app: campuscloud
+    spec:
+      containers:
+        - name: campuscloud
+          image: rostinm/campuscloud:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: "jdbc:postgresql://ep-soft-darkness-a4q2zq2r-pooler.us-east-1.aws.neon.tech:5432/CAMPUSCLOUD?sslmode=require"
+            - name: SPRING_DATASOURCE_USERNAME
+              value: "CAMPUSCLOUD_owner"
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: "npg_Xa4r0iETympv"
+            - name: RECAPTCHA_SECRET
+              value: "6LeJ3FMrAAAAABjvNK_Jce8TCc-zACuC6_AlCsZs"
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "500m"
+            limits:
+              memory: "1Gi"
+              cpu: "1"

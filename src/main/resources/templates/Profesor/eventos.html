@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calendario Simple</title>
+    <link rel="stylesheet" href="/css/profesor/calendar.css" />
+  </head>
+  <body>
+    <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+    <div class="calendar">
+      <div class="calendar__header">
+        <h1 class="calendar__title">Calendario</h1>
+        <button class="btn" id="new-event-btn">+ Nuevo Evento</button>
+      </div>
+
+      <div class="legend">
+        <div class="legend__item">
+          <div class="legend__color legend__color--past"></div>
+          <span>Eventos pasados</span>
+        </div>
+        <div class="legend__item">
+          <div class="legend__color legend__color--today"></div>
+          <span>Eventos de hoy</span>
+        </div>
+        <div class="legend__item">
+          <div class="legend__color legend__color--future"></div>
+          <span>Eventos futuros</span>
+        </div>
+      </div>
+
+      <div class="calendar__nav">
+        <button class="btn btn--secondary" id="prev-month-btn">Anterior</button>
+        <div class="calendar__month" id="current-month"></div>
+        <button class="btn btn--secondary" id="next-month-btn">
+          Siguiente
+        </button>
+      </div>
+
+      <div class="calendar__grid">
+        <div class="calendar__weekday">Dom</div>
+        <div class="calendar__weekday">Lun</div>
+        <div class="calendar__weekday">Mar</div>
+        <div class="calendar__weekday">Mié</div>
+        <div class="calendar__weekday">Jue</div>
+        <div class="calendar__weekday">Vie</div>
+        <div class="calendar__weekday">Sáb</div>
+      </div>
+
+      <div class="calendar__days" id="calendar-days"></div>
+
+      <div class="upcoming-events">
+        <h2 class="upcoming-events__title">Próximos Eventos</h2>
+        <div class="upcoming-events__list" id="upcoming-events-list"></div>
+      </div>
+    </div>
+
+    <div class="modal" id="event-modal">
+      <div class="modal__content">
+        <div class="modal__header">
+          <h2 class="modal__title" id="modal-title">Nuevo Evento</h2>
+          <button class="modal__close" id="close-modal">&times;</button>
+        </div>
+        <form id="event-form">
+          <input type="hidden" id="event-id" />
+          <div class="form-group">
+            <label class="form-label" for="event-title">Título</label>
+            <input type="text" class="form-control" id="event-title" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="event-date">Fecha</label>
+            <input type="date" class="form-control" id="event-date" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="event-time">Horario</label>
+            <input
+              type="text"
+              class="form-control"
+              id="event-time"
+              placeholder="Ej: 10:00 - 11:30"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="event-location">Ubicación</label>
+            <input
+              type="text"
+              class="form-control"
+              id="event-location"
+              placeholder="Ej: Aula 101"
+              title="Ubicación del evento"
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="event-type">Tipo de Evento</label>
+            <select class="form-control" id="event-type" required>
+              <option value="examen">Examen</option>
+              <option value="tarea">Tarea</option>
+              <option value="clase">Clase</option>
+              <option value="asesoria">Asesoría</option>
+              <option value="otro">Otro</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button
+              type="button"
+              class="btn btn--danger hidden"
+              id="delete-event-btn"
+            >
+              Eliminar
+            </button>
+            <button type="submit" class="btn" id="save-event-btn">
+              Guardar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+  <script src="/js/profesor/calendar.js"></script>
+</html>

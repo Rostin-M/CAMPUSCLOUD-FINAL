@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login - CampusCloud</title>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+    <link rel="stylesheet" th:href="@{/css/login.css}" />
+  </head>
+  <body>
+    <section>
+      <form action="/login" method="post" id="loginForm">
+        <div class="logo-container">
+          <img
+            th:src="@{/images/udem_logo.png}"
+            alt="Logo de la Universidad"
+            class="udem_logo"
+          />
+        </div>
+
+        <h1>Iniciar sesión</h1>
+
+        <div th:if="${param.error}" class="error-global">
+          <span>Credenciales incorrectas. Por favor, inténtalo de nuevo.</span>
+        </div>
+
+        <div th:if="${param.captchaError}" class="error-global">
+          <span
+            >Captcha inválido. Por favor, confirma que no eres un robot.</span
+          >
+        </div>
+
+        <div class="inputbox">
+          <ion-icon name="mail-outline"></ion-icon>
+          <input
+            type="text"
+            name="username"
+            id="username"
+            placeholder="Correo"
+            class="inputbox-correo"
+            required
+          />
+          <span id="emailError" class="error-tooltip"
+            >Ingresa un correo válido.</span
+          >
+        </div>
+
+        <div class="inputbox">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+          <input
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Contraseña"
+            class="inputbox-correo"
+            required
+          />
+          <span id="passwordError" class="error-tooltip"
+            >La contraseña debe tener al menos 6 caracteres.</span
+          >
+        </div>
+
+        <button type="submit" id="submitBtn">Ingresar</button>
+        <!-- reCAPTCHA de Google -->
+        <div class="recaptcha-container">
+          <div
+            class="g-recaptcha"
+            data-sitekey="6LeJ3FMrAAAAAKIwemTmC9QiJ8Ai9oG3iiAE5pSf"
+          ></div>
+        </div>
+
+        <!-- Token CSRF -->
+        <input
+          type="hidden"
+          th:name="${_csrf.parameterName}"
+          th:value="${_csrf.token}"
+        />
+      </form>
+    </section>
+
+    <script src="/js/login.js"></script>
+  </body>
+</html>

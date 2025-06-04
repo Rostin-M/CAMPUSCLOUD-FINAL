@@ -1,0 +1,299 @@
+<body th:data-csrf-token="${_csrf.token}" th:data-csrf-header="${_csrf.headerName}">
+  <div th:fragment="contenido">
+  <link rel="stylesheet" href="/css/Profesor/asistencia.css">
+    <div class="app-container">
+
+      <div class="main-content">
+        <header class="page-header">
+          <h1>Asistencias</h1>
+          <div class="header-actions">
+            <button id="new-attendance-btn" class="btn btn-primary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="8" x2="12" y2="16"></line>
+                <line x1="8" y1="12" x2="16" y2="12"></line>
+              </svg>
+              Tomar asistencia
+            </button>
+            <button id="export-btn" class="btn btn-secondary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Exportar
+            </button>
+            <button id="upload-btn" class="btn btn-accent">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+              Cargar al sistema
+            </button>
+          </div>
+        </header>
+
+        <div class="filters-container">
+          <div class="filter-group">
+            <label for="course-select">Curso:</label>
+            <select id="course-select" class="form-select">
+              <option value="">Seleccionar curso</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="date-filter">Fecha:</label>
+            <input type="date" id="date-filter" class="form-input" />
+          </div>
+          <div class="filter-group search-group">
+            <label for="search-input">Buscar:</label>
+            <div class="search-input-container">
+              <input
+                type="text"
+                id="search-input"
+                class="form-input"
+                placeholder="Nombre del estudiante..."
+              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="attendance-container">
+          <div id="no-selection-message" class="message-container">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <p>Selecciona un curso para ver las asistencias</p>
+          </div>
+
+          <div
+            id="no-results-message"
+            class="message-container no-results-hidden"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+            <p>No se encontraron resultados</p>
+          </div>
+
+          <div id="attendance-table-container">
+            <div class="table-header">
+              <h2 id="table-title">Asistencias</h2>
+              <div class="stats-container">
+                <div class="stat-item">
+                  <span class="stat-label">Total clases:</span>
+                  <span id="total-classes" class="stat-value">0</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Asistencia promedio:</span>
+                  <span id="average-attendance" class="stat-value">0%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table id="attendance-table" class="data-table">
+                <thead>
+                  <tr>
+                    <th class="sortable" data-sort="id">#</th>
+                    <th class="sortable" data-sort="student_name">
+                      Estudiante
+                    </th>
+                    <th class="sortable" data-sort="date">Fecha</th>
+                    <th class="sortable" data-sort="status">Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="attendance-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Tomar asistencia</h2>
+          <button
+            class="close-btn"
+            id="close-modal"
+            title="Cerrar modal"
+            aria-label="Cerrar modal"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="modal-course-select">Curso:</label>
+            <select id="modal-course-select" class="form-select">
+              <option value="">Seleccionar curso</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="attendance-date">Fecha:</label>
+            <input
+              type="date"
+              id="attendance-date"
+              class="form-input"
+              value=""
+            />
+          </div>
+
+          <div id="students-list-container">
+            <h3>Estudiantes</h3>
+            <div class="attendance-actions">
+              <button id="mark-all-present" class="btn btn-sm btn-success">
+                Todos presentes
+              </button>
+              <button id="mark-all-absent" class="btn btn-sm btn-danger">
+                Todos ausentes
+              </button>
+            </div>
+            <div id="students-list" class="students-list">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button id="cancel-attendance" class="btn btn-secondary">
+            Cancelar
+          </button>
+          <button id="save-attendance" class="btn btn-primary">Guardar</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="upload-modal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Cargando asistencias</h2>
+          <button
+            class="close-btn"
+            id="close-upload-modal"
+            aria-label="Cerrar modal"
+            title="Cerrar modal"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="modal-body upload-modal-body">
+          <div class="upload-animation">
+            <svg class="circular-progress" viewBox="0 0 50 50">
+              <circle
+                class="path"
+                cx="25"
+                cy="25"
+                r="20"
+                fill="none"
+                stroke-width="4"
+              ></circle>
+            </svg>
+          </div>
+          <p class="upload-message">Cargando asistencias al sistema UdeM...</p>
+        </div>
+        <div class="modal-footer">
+          <button id="close-upload" class="btn btn-primary">Aceptar</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <script src="/js/profesor/asistencia.js"></script>
+</div>
+</body>

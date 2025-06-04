@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sección de Cursos</title>
+    <link rel="stylesheet" href="/css/profesor/courses.css" />
+</head>
+<body>
+    <section class="courses-section">
+        <header class="courses-header">
+            <h1 class="courses-title">Mis Cursos</h1>
+        </header>
+
+        <div class="courses-filters">
+            <div class="search-box">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" class="search-input" placeholder="Buscar cursos..." aria-label="Buscar cursos">
+            </div>
+            <select class="filter-dropdown" aria-label="Filtrar por categoría">
+                <option value="">Todas las categorías</option>
+                <option value="programming">Programación</option>
+                <option value="design">Diseño</option>
+                <option value="business">Negocios</option>
+                <option value="science">Ciencias</option>
+            </select>
+        </div>
+
+        <div class="courses-grid" id="courses-container">
+        </div>
+        <div id="empty-state" class="empty-state">
+            <div class="empty-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                </svg>
+            </div>
+            <h2 class="empty-title">No se encontraron cursos</h2>
+            <p class="empty-text">Intenta cambiar los filtros o crea un nuevo curso</p>
+        </div>
+
+        <div class="courses-pagination">
+            <button class="page-btn disabled" aria-label="Página anterior">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+            </button>
+            <button class="page-btn active" aria-label="Página 1">1</button>
+            <button class="page-btn" aria-label="Página 2">2</button>
+            <button class="page-btn" aria-label="Página 3">3</button>
+            <button class="page-btn" aria-label="Página siguiente">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+            </button>
+        </div>
+    </section>
+    <script src="/js/profesor/courses.js"></script>
+</html>

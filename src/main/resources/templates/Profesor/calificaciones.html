@@ -1,0 +1,151 @@
+<link rel="stylesheet" href="/css/profesor/calificaciones.css" />
+<div th:fragment="contenido">
+  <div class="grades-section">
+    <div class="app-container">
+      <div class="main-content">
+        <header class="page-header">
+          <h1>Calificaciones</h1>
+          <div class="header-actions">
+            <button id="export-btn" class="btn btn-secondary">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Exportar
+            </button>
+          </div>
+        </header>
+
+        <div class="filters-container">
+          <div class="filter-group">
+            <label for="course-select">Curso:</label>
+            <select id="course-select" class="form-select">
+              <option value="">Seleccionar curso</option>
+            </select>
+          </div>
+          <div class="filter-group">
+            <label for="event-select">Evento:</label>
+            <select id="event-select" class="form-select" disabled>
+              <option value="">Seleccionar evento</option>
+            </select>
+          </div>
+          <div class="filter-group search-group">
+            <label for="search-input">Buscar:</label>
+            <div class="search-input-container">
+              <input
+                type="text"
+                id="search-input"
+                class="form-input"
+                placeholder="Nombre del estudiante..."
+              />
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="grades-container">
+          <div id="no-selection-message" class="message-container">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            <p>Selecciona un curso para ver las calificaciones</p>
+          </div>
+
+          <div id="no-results-message" class="message-container">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="8" y1="12" x2="16" y2="12"></line>
+            </svg>
+            <p>No se encontraron resultados</p>
+          </div>
+
+          <div id="grades-table-container">
+            <div class="table-header">
+              <h2 id="table-title">Calificaciones</h2>
+              <div class="stats-container">
+                <div class="stat-item">
+                  <span class="stat-label">Promedio:</span>
+                  <span id="average-grade" class="stat-value">0.0</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Nota más alta:</span>
+                  <span id="highest-grade" class="stat-value">0.0</span>
+                </div>
+                <div class="stat-item">
+                  <span class="stat-label">Nota más baja:</span>
+                  <span id="lowest-grade" class="stat-value">0.0</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table id="grades-table" class="data-table">
+                <thead>
+                  <tr>
+                    <th class="sortable" data-sort="id">#</th>
+                    <th class="sortable" data-sort="student_name">
+                      Estudiante
+                    </th>
+                    <th class="sortable" data-sort="event_title">Evento</th>
+                    <th class="sortable" data-sort="submitted_at">
+                      Fecha de entrega
+                    </th>
+                    <th class="sortable" data-sort="grade">Calificación</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/js/profesor/calificaciones.js"></script>
+</div>

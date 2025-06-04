@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Profesor</title>
+    <link rel="stylesheet" th:href="@{/css/Profesor/sidebar.css}" />
+  </head>
+  <body
+    th:data-username="${nombreCompleto}"
+    th:data-userid="${userId}"
+    th:data-rol="${rolUsuario}"
+  >
+    <div th:replace="Profesor/fragments/sidebar :: sidebar"></div>
+    <div class="main-content">
+      <div th:replace="${contenido}"></div>
+    </div>
+  </body>
+</html>

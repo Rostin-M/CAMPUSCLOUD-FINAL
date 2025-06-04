@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html
+  lang="es"
+  xmlns:th="http://www.thymeleaf.org"
+  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard Estudiante</title>
+    <link rel="stylesheet" href="/css/navbar_estudiante.css" />
+    <link rel="stylesheet" href="/css/dashboard_estudiante.css" />
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="logo">CampusCloud</div>
+      <ul class="nav-links">
+        <li><a href="/estudiante/cursos">Mis Cursos</a></li>
+        <li><a href="/estudiante/eventos">Eventos</a></li>
+        <li><a href="/estudiante/entregas">Entregar Tarea</a></li>
+        <li><a href="/estudiante/calificaciones">Calificaciones</a></li>
+      </ul>
+      <div class="user-section">
+        <a href="/perfil" class="user-profile">
+          <span class="user-icon">👤</span>
+          <span class="user-name" th:text="${nombreUsuario}">Estudiante</span>
+        </a>
+        <form th:action="@{/logout}" method="post" class="logout-form">
+          <input
+            type="hidden"
+            th:name="${_csrf.parameterName}"
+            th:value="${_csrf.token}"
+          />
+          <button type="submit" class="logout-btn">Cerrar Sesión</button>
+        </form>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <div class="greeting">
+        ¡Bienvenido, <span th:text="${nombreUsuario}">Estudiante</span>!
+      </div>
+      <div class="cards">
+        <div class="card">
+          <h3>Mis Cursos</h3>
+          <p>Accede a tus cursos actuales y revisa el contenido.</p>
+        </div>
+        <div class="card">
+          <h3>Próximos Eventos</h3>
+          <p>Revisa las fechas de tareas y exámenes.</p>
+        </div>
+        <div class="card">
+          <h3>Calificaciones</h3>
+          <p>Consulta tus notas y feedback de tareas.</p>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
